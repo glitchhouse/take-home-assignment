@@ -1,45 +1,57 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
+import { NavigationContainer, DefaultTheme, DarkTheme, RouteProp } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import HomeScreen from './index';
+import TrackDetailScreen from './track/[id]';
 
-export default function TabLayout() {
+// Define your navigation types
+export type RootStackParamList = {
+  Home: undefined;
+  Tabs: undefined;
+  'track/[id]': { id: string };
+};
+
+export type TabParamList = {
+  Home: undefined;
+  
+};
+
+const Stack = createSharedElementStackNavigator<RootStackParamList>();
+
+
+export default function Navigation() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
+    <Stack.Navigator
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
       }}>
-      <Tabs.Screen
-        name="index"
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          animation: 'fade',
         }}
       />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
+      <Stack.Screen
+        name="track/[id]"
+        component={TrackDetailScreen}
+        options={({ route }: { route: RouteProp<RootStackParamList, 'track/[id]'> }) => ({
+          animation: 'fade',
+          freezeOnBlur: true,
+          sharedElements: (route: RouteProp<RootStackParamList, 'track/[id]'>, otherRoute: any, showing: boolean) => {
+            const { id } = route.params;
+            return [
+              { id: `item.${id}.photo` },
+              { id: `item.${id}.title` },
+              { id: `item.${id}.description` },
+            ];
+          },
+        })}
       />
-    </Tabs>
+    </Stack.Navigator>
   );
 }
+
