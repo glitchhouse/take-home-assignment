@@ -1,36 +1,57 @@
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
+import { router } from 'expo-router';
+import Animated, { Layout } from 'react-native-reanimated';
 
 interface CardProps {
   title: string;
   description: string;
   emoji: string;
   imageSource: any;
+  index: number;
 }
 
-export function CardComponent({ title, description, emoji, imageSource }: CardProps) {
+export function CardComponent({ title, description, emoji, imageSource, index }: CardProps) {
   return (
-    <View style={styles.card}>
+    <Animated.View 
+      style={[styles.card]}
+      sharedTransitionTag={`card-${index}`}
+      layout={Layout.duration(300).springify()}
+    >
       <View style={styles.imageContainer}>
-        <Image 
+        <Animated.Image 
           source={imageSource}
           style={styles.cardImage}
+          sharedTransitionTag={`cardImage-${index}`}
+          resizeMode="cover"
         />
       </View>
       <View style={styles.cardContent}>
         <View style={styles.cardTitleContainer}>
-          <ThemedText style={styles.cardTitle}>
+          <Animated.Text 
+            style={styles.cardTitle}
+            sharedTransitionTag={`cardTitle-${index}`}
+          >
             {title} {emoji}
-          </ThemedText>
+          </Animated.Text>
         </View>
-        <ThemedText style={styles.cardDescription}>
+        <Animated.Text 
+          style={styles.cardDescription}
+          sharedTransitionTag={`cardDescription-${index}`}
+        >
           {description}
-        </ThemedText>
-        <TouchableOpacity style={styles.viewButton}>
+        </Animated.Text>
+        <TouchableOpacity 
+          style={styles.viewButton}
+          onPress={() => router.push({
+            pathname: '/Detail',
+            params: { activeIndex: index }
+          })}
+        >
           <ThemedText style={styles.viewButtonText}>VIEW TRACK DETAILS →</ThemedText>
         </TouchableOpacity>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 

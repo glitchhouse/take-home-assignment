@@ -1,3 +1,4 @@
+import React from 'react';
 import { Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -27,7 +28,17 @@ export default function RootLayout() {
 
   return (
     <>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack
+        screenOptions={{
+          animation: 'slide_from_right',
+          headerShown: false,
+          contentStyle: { backgroundColor: '#000' },
+          animationDuration: 300,
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="Detail" />
+      </Stack>
       <StatusBar style="light" />
     </>
   );

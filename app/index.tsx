@@ -54,6 +54,7 @@ export default function HomeScreen() {
             description="start building websites with html & css, the building blocks that power the web. grow into full-stack coding!"
             emoji="🌐"
             imageSource={require('@/assets/images/webDev.gif')}
+            index={0}
           />
           
           <CardComponent 
@@ -61,6 +62,7 @@ export default function HomeScreen() {
             description="learn python basics and dive into ai.build practical ai apps, get hands-on with ml models and grow into ai engineering!"
             emoji="🤖"
             imageSource={require('@/assets/images/ai.gif')}
+            index={1}
           />
         </ScrollView>
 
