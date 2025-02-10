@@ -30,10 +30,9 @@ export default function RootLayout() {
     <>
       <Stack
         screenOptions={{
-          animation: 'slide_from_right',
+          animation: 'none',
           headerShown: false,
           contentStyle: { backgroundColor: '#000' },
-          animationDuration: 300,
         }}
       >
         <Stack.Screen name="index" />

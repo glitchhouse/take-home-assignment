@@ -1,7 +1,10 @@
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { router } from 'expo-router';
-import Animated, { Layout } from 'react-native-reanimated';
+import Animated, { 
+  SharedTransition,
+  withSpring,
+} from 'react-native-reanimated';
 
 interface CardProps {
   title: string;
@@ -12,46 +15,65 @@ interface CardProps {
 }
 
 export function CardComponent({ title, description, emoji, imageSource, index }: CardProps) {
+  const handlePress = () => {
+    router.push({
+      pathname: '/Detail',
+      params: { activeIndex: index }
+    });
+  };
+
   return (
-    <Animated.View 
-      style={[styles.card]}
-      sharedTransitionTag={`card-${index}`}
-      layout={Layout.duration(300).springify()}
+    <TouchableOpacity 
+      activeOpacity={0.9}
+      onPress={handlePress}
     >
-      <View style={styles.imageContainer}>
-        <Animated.Image 
-          source={imageSource}
-          style={styles.cardImage}
-          sharedTransitionTag={`cardImage-${index}`}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.cardContent}>
-        <View style={styles.cardTitleContainer}>
-          <Animated.Text 
-            style={styles.cardTitle}
-            sharedTransitionTag={`cardTitle-${index}`}
-          >
-            {title} {emoji}
-          </Animated.Text>
+      <Animated.View 
+        style={[styles.card]}
+        sharedTransitionTag={`card-${index}`}
+        sharedTransitionStyle={SharedTransition.custom((values) => {
+          'worklet';
+          return {
+            height: withSpring(values.targetHeight, { damping: 15 }),
+            width: withSpring(values.targetWidth, { damping: 15 }),
+            transform: [
+              { scale: withSpring(1, { damping: 15 }) },
+              { translateY: withSpring(values.targetOriginY - values.currentOriginY, { damping: 15 }) }
+            ],
+          };
+        })}
+      >
+        <View style={styles.imageContainer}>
+          <Animated.Image 
+            source={imageSource}
+            style={styles.cardImage}
+            sharedTransitionTag={`cardImage-${index}`}
+            resizeMode="cover"
+          />
         </View>
-        <Animated.Text 
-          style={styles.cardDescription}
-          sharedTransitionTag={`cardDescription-${index}`}
-        >
-          {description}
-        </Animated.Text>
-        <TouchableOpacity 
-          style={styles.viewButton}
-          onPress={() => router.push({
-            pathname: '/Detail',
-            params: { activeIndex: index }
-          })}
-        >
-          <ThemedText style={styles.viewButtonText}>VIEW TRACK DETAILS →</ThemedText>
-        </TouchableOpacity>
-      </View>
-    </Animated.View>
+        <View style={styles.cardContent}>
+          <View style={styles.cardTitleContainer}>
+            <Animated.Text 
+              style={styles.cardTitle}
+              sharedTransitionTag={`cardTitle-${index}`}
+            >
+              {title} {emoji}
+            </Animated.Text>
+          </View>
+          <Animated.Text 
+            style={styles.cardDescription}
+            sharedTransitionTag={`cardDescription-${index}`}
+          >
+            {description}
+          </Animated.Text>
+          <TouchableOpacity 
+            style={styles.viewButton}
+            onPress={handlePress}
+          >
+            <ThemedText style={styles.viewButtonText}>VIEW TRACK DETAILS →</ThemedText>
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
+    </TouchableOpacity>
   );
 }
 

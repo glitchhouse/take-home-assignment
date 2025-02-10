@@ -17,7 +17,7 @@ export function WebDevContent() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.content}>
-        <View style={styles.mainImageContainer}>
+        <View style={styles.ImageContainer}>
           <Animated.Image 
             source={require('@/assets/images/webDev.gif')}
             style={styles.mainImage}
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  mainImageContainer: {
+  ImageContainer: {
     width: '100%',
     height: 250,
     position: 'relative',

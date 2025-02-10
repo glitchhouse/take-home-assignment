@@ -1,20 +1,32 @@
 import { StyleSheet, View, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
-import { Link, router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Entypo, MaterialIcons } from '@expo/vector-icons';
 import Animated, { 
   useAnimatedStyle, 
   withTiming,
+  withSpring,
   interpolate,
+  useSharedValue,
 } from 'react-native-reanimated';
-import { useState, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { WebDevContent } from '@/components/WebDevContent';
 import { AIPythonContent } from '@/components/AIPythonContent';
 
 export default function Detail() {
   const { activeIndex } = useLocalSearchParams();
   const [activeTab, setActiveTab] = useState(Number(activeIndex) || 0);
+  
+  const expandProgress = useSharedValue(0);
+
+  useEffect(() => {
+    expandProgress.value = withSpring(1, {
+      mass: 0.5,
+      damping: 15,
+      stiffness: 100,
+    });
+  }, []);
 
   const webDevStyle = useAnimatedStyle(() => ({
     flex: 1,
@@ -27,7 +39,7 @@ export default function Detail() {
     height: '100%',
   }));
 
-  const pythonStyle = useAnimatedStyle(() => ({
+  const aiStyle = useAnimatedStyle(() => ({
     flex: 1,
     opacity: withTiming(activeTab === 1 ? 1 : 0, { duration: 300 }),
     transform: [{ 
@@ -38,11 +50,45 @@ export default function Detail() {
     height: '100%',
   }));
 
+  const expandStyle = useAnimatedStyle(() => {
+    return {
+      flex: 1,
+      transform: [
+        { scale: interpolate(
+            expandProgress.value,
+            [0, 1],
+            [0.97, 1],
+          )
+        },
+        { 
+          translateY: interpolate(
+            expandProgress.value,
+            [0, 1],
+            [100, 0],
+          )
+        }
+      ],
+      opacity: expandProgress.value,
+    };
+  });
+
+  const handleBack = async () => {
+    expandProgress.value = withSpring(0, {
+      mass: 0.5,
+      damping: 15,
+      stiffness: 100,
+    });
+    
+    setTimeout(() => {
+      router.back();
+    }, 150);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
         <TouchableOpacity 
-          onPress={() => router.back()} 
+          onPress={handleBack} 
           style={styles.backButton}
         >
           <MaterialIcons name="chevron-left" size={30} color="#888888" />
@@ -86,15 +132,12 @@ export default function Detail() {
         />
       </View>
 
-      <Animated.View 
-        style={[styles.expandedCard]}
-        sharedTransitionTag={`card-${activeIndex}`}
-      >
+      <Animated.View style={[styles.expandedCard, expandStyle]}>
         <View style={styles.contentContainer}>
           <Animated.View style={webDevStyle}>
             <WebDevContent />
           </Animated.View>
-          <Animated.View style={pythonStyle}>
+          <Animated.View style={aiStyle}>
             <AIPythonContent />
           </Animated.View>
         </View>

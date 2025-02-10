@@ -15,7 +15,7 @@ export function AIPythonContent() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.content}>
-        <View style={styles.mainImageContainer}>
+        <View style={styles.ImageContainer}>
           <Animated.Image 
             source={require('@/assets/images/ai.gif')}
             style={styles.mainImage}
@@ -65,7 +65,7 @@ export function AIPythonContent() {
           </ScrollView>
         </View>
 
-        <View style={styles.levelSection}>
+        <View style={styles.bottomSection}>
           <View style={styles.dashedBorder} />
           <ThemedText style={styles.startingTitle}>
             let's choose your starting point for this track ⛳️
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  mainImageContainer: {
+  ImageContainer: {
     width: '100%',
     height: 250,
     position: 'relative',
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
     lineHeight: 30,
   },
-  levelSection: {
+  bottomSection: {
     paddingTop: 32,
     gap: 16,
   },
