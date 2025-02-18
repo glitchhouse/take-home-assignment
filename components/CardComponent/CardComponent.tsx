@@ -28,8 +28,7 @@ const CardComponent = (props: CardType) => {
           <Logo />
         </View>
         <View>
-          <Animated.Image
-            sharedTransitionTag={props.tagName}
+          <Image
             source={props.image}
             className="h-[230] w-full"
             style={{

@@ -1,8 +1,9 @@
 import BackGroundComponent from "@/components/BackGround/BackGroundComponent";
 import BackIcon from "../../../assets/Svg/Back.svg";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import clsx from "clsx";
-import { Slot, Stack, router, useLocalSearchParams } from "expo-router";
+import { Slot, router, useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

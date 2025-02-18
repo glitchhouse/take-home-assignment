@@ -6,7 +6,8 @@ import { TagEnum } from "..";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Stack } from "expo-router";
-import { Image as NativeImage, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import { SharedElement } from "react-navigation-shared-element";
 
 import ToolsComponent, {
   ListType,
@@ -64,14 +65,15 @@ const web = () => {
           <View className="absolute right-2 top-2 z-20">
             <Logo />
           </View>
-          <Animated.Image
-            sharedTransitionTag={TagEnum.webImage.toString()}
-            source={Webimage}
-            className="h-[230] w-full"
-            style={{
-              objectFit: "cover",
-            }}
-          />
+          <SharedElement id={TagEnum.webImage.toString()}>
+            <Image
+              source={Webimage}
+              className="h-[230] w-full"
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </SharedElement>
           <View className="px-4">
             <Text className="text-[#FCF2D0] font-[450] text-[24px] leading-[30px] my-4">
               intro to coding with web dev 🌐

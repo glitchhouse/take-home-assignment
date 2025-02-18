@@ -1,15 +1,11 @@
 import BackGroundComponent from "@/components/BackGround/BackGroundComponent";
 import CardComponent from "@/components/CardComponent/CardComponent";
-import Logo from "../../assets/Level/level.png";
 import React from "react";
 import TickSvg from "../../assets/Svg/Tick.svg";
-import { Link, Stack, router } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
+import { Stack, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import {
-  useNavigation,
-  createStaticNavigation,
-} from "@react-navigation/native";
 import {
   FlatList,
   GestureResponderEvent,
@@ -33,7 +29,7 @@ export enum TagEnum {
   "pyImage",
   "webImage",
 }
-
+const Logo = require("../../assets/Level/level.png");
 const index = () => {
   const navigation = useNavigation();
 
@@ -119,7 +115,7 @@ const index = () => {
             contentContainerStyle={{
               gap: 20,
             }}
-            snapToInterval={300 + 20}
+            snapToInterval={300 + 20} //Card Width + gap
             renderItem={({ item }) => <CardComponent {...item} />}
             showsHorizontalScrollIndicator={false}
           />

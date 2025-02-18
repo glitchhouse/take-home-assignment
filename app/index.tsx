@@ -1,9 +1,13 @@
-import { Link, Redirect } from "expo-router";
 import React from "react";
-import { View, Text } from "react-native";
+import { Redirect } from "expo-router";
+import { View } from "react-native";
 
 const index = () => {
-  return <Redirect href={"/home"} />;
+  return (
+    <View className="bg-primery_Black flex-1">
+      <Redirect href={"/home"} />
+    </View>
+  );
 };
 
 export default index;
