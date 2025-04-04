@@ -1,0 +1,20 @@
+.tags{
+    height: 70px;
+    text-align: left;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.332);
+    margin-bottom: 0;
+    border:1px solid rgba(105, 105, 105, 0.369);
+    background-image:linear-gradient(to bottom,rgba(28, 28, 28, 0.433),rgb(23, 23, 23));
+}
+h5{
+    font-family: "Cooper Hewitt", sans-serif;
+    font-size: 14px;
+    color:white;
+    margin-bottom: 20px;
+}
+
+p{
+    font-size: 12px;
+    color:gray;
+}
