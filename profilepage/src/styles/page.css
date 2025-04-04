@@ -1,0 +1,47 @@
+button {
+  all: unset;
+  height: 72px;
+  width: 640px;
+  display: flex; /* Ensure text and image align properly */
+  align-items: center;
+  justify-content: center; /* Center text and icon */
+  color: gray;
+  background-color: black; /* Match the background */
+  border: 2px solid transparent; /* Prevents button size shift */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.page {
+  position: relative;
+  top: 100px;
+}
+button:hover {
+  cursor: pointer;
+}
+
+.one img {
+  margin: 10px; /* Reduce excessive margin */
+  width: 200px; /* Ensure consistent image size */
+  height: 200px;
+}
+
+.one,
+.two {
+  margin-top: 20px; /* Prevents content from shifting */
+  text-align: center;
+  align-items: left;
+}
+.one,
+.two:hover {
+  cursor: pointer;
+}
+
+.two {
+  text-align: left;
+}
+
+h4 {
+  font-family: "Cooper Hewitt", sans-serif;
+  color: white;
+  margin-left: 10px;
+}

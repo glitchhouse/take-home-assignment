@@ -1,0 +1,11 @@
+img{
+    height: 15px;
+    width:15px;
+    margin-bottom:-3px;
+}
+p{
+    display: block;
+}
+.following{
+    height: 50px;
+}
