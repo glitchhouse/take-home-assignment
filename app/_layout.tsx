@@ -1,23 +1,19 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React from "react";
+import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    CircularBook: require('../assets/fonts/CircularStd-Book.otf'),
-    CircularLight: require('../assets/fonts/CircularStd-Light.otf'),
-    CooperHewittMedium: require('../assets/fonts/CooperHewitt-Medium.otf'),
-    NTBrickSans: require('../assets/fonts/NTBrickSans.ttf'),
+    CircularBook: require("../assets/fonts/CircularStd-Book.otf"),
+    CircularLight: require("../assets/fonts/CircularStd-Light.otf"),
+    CooperHewittMedium: require("../assets/fonts/CooperHewitt-Medium.otf"),
+    NTBrickSans: require("../assets/fonts/NTBrickSans.ttf"),
   });
 
   useEffect(() => {
@@ -31,12 +27,19 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+    <>
+      <Stack
+        screenOptions={{
+          animation: "slide_from_right",
+          headerShown: false,
+          contentStyle: { backgroundColor: "#000" },
+          animationDuration: 300,
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="Detail" />
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+      <StatusBar style="light" />
+    </>
   );
 }
