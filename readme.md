@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/7ed54cec-a7e7-4c06-9298-670b43b6ed74)
+
 # glitch.house - take home assignment
 
 This assignment requires you to build a search bar component for a React Native application using Expo. The search bar should provide live suggestions as the user types, and navigating to a dedicated search results page when a suggestion is selected.
@@ -26,11 +28,21 @@ You have been provided with a base Expo application. This template includes the 
 
 1.  Ensure your project is in a GitHub repository.
 2.  Create a **screen recording** demonstrating your implementation.
-3.  Share the **GitHub repository link** along with the screen recording.
+3.  **Submit by mailing to hello@glitch.house or via Internshala's chat**, including the screen recording and the GitHub repository link.
 
 ## Deadline
 
 We expect you to complete the project within **2 days** from the start date.
+
+---
+
+## Contact
+
+If you have any questions or need clarification, feel free to reach out:
+-   Email: hello@glitch.house
+-   Number: +91-8838506252
+
+---
 
 All the best ;)
 - Glitch.house
