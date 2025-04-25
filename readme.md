@@ -1,41 +1,36 @@
 # glitch.house - take home assignment
 
-below is a screen recording of a figma prototype where a student can view their profile in our app. the goal is to replicate the ui in the video as closely as possible using react native and expo.
+This assignment requires you to build a search bar component for a React Native application using Expo. The search bar should provide live suggestions as the user types, and navigating to a dedicated search results page when a suggestion is selected.
 
-https://github.com/user-attachments/assets/340dd82f-f65a-43ec-ab53-b52098e46fbc
+## Requirements
 
+-   **Search Bar UI**: Implement a basic input field where users can type their search queries.
+-   **Live Suggestions**: Display a dropdown list of matching suggestions as the user types. Each suggestion should include:
+    -   A small thumbnail image.
+    -   The title of the result.
+-   **On Click**: When a user taps on a suggestion, navigate them to a "Search Results" page.
+-   **Search Results Page**: Create a separate page to display a list of all results that match the search query. This page should show cards for each result, including the title and potentially view/like counts.
 
-### **requirements:**
+**Bonus:** Feel free to add interactions and transitions to enhance the user experience.
 
-- implement **the entire screen** *(refer to the figma link for full details).*  
-- make sure to animate the profile's cover image like shown in the prototype video.
-- have a functioning tab bar with the two tabs (it should be toggle-able, basically).
-- the user interface must **match the figma designs accurately**.
+## Design Reference
 
+You can find the design details in the Figma file here:
+[Figma Design Link](https://www.figma.com/design/GlrzRFGeATFEjaHNmMwMov/glitch.house-%3C%3E-react-native-assignment?node-id=0-1&p=f&t=dXvBM9WhLFvSBMw1-11)
 
-### **instructions:**
+## Getting Started
 
-1. **fork the repository**:  
-   the base expo app with the required fonts is provided. fork this repository to get started.
+You have been provided with a base Expo application. This template includes the necessary setup and, importantly, the correct fonts matching the Figma designs are available within this project.
 
-2. **access figma designs:**  
-   - [design link](https://www.figma.com/design/dOlm8w2Rirwe6ShzdV5bGd/glitch.house-%3C%3E-front-end-project?node-id=1457-972&t=4gJU6RmTfB7kFUQc-11)  
-   - [prototype link](https://www.figma.com/proto/dOlm8w2Rirwe6ShzdV5bGd/glitch.house-%3C%3E-front-end-project?page-id=0%3A1&node-id=1457-5385&viewport=-1546%2C1613%2C0.4&t=mM0U3MloJnfZBSnd-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1457%3A5385)
+## How to Submit
 
-### **how to submit:**
+1.  Ensure your project is in a GitHub repository.
+2.  Create a **screen recording** demonstrating your implementation.
+3.  Share the **GitHub repository link** along with the screen recording.
 
-1. fork the repository and ensure that its visibility is set to "private". then, add "glitchhouse" as a collaborator.
-2. share the repository link in the Intershala chat or alternatively, you can send the details to hello@glitch.house.
-3. when submitting, include the following along with the repository link:
-   - a **screen recording** demonstrating your implementation.
-   - an **expo Go link** for your project (refer to the [expo sharing guide](https://docs.expo.dev/develop/development-builds/share-with-your-team/)).
+## Deadline
 
----
+We expect you to complete the project within **2 days** from the start date.
 
-### deadline
-
-we expect you to complete the project within 4 days from the start date. if the assignment is not submitted by the deadline, we will consider it rejected. if you encounter any issues or need an extension, please feel free to reach out to the contact below.
-
-### **contact:**
-
-you can reach out for any questions or clarifications via **whatsapp** (+91-8368246974) or **email** (hello@glitch.house).
+All the best ;)
+- Glitch.house
